@@ -3,19 +3,19 @@ from memberships.models import Membership
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-class Klasa(models.Model):
-    titulli = models.CharField(max_length=150)
-    pershkrimi = models.TextField(max_length= 200, null=True)
-    imazhi = models.ImageField(upload_to='cat_images', default='cat_images/default.jpg')
+class Clasa(models.Model):
+    title = models.CharField(max_length=150)
+    desc = models.TextField(max_length= 200, null=True)
+    img = models.ImageField(upload_to='cat_images', default='cat_images/default.jpg')
 
     def __str__(self):
-        return '{}'.format(self.titulli)
+        return '{}'.format(self.titel)
 
-class Lendet(models.Model):
-    krijues = models.ForeignKey(User,on_delete = models.CASCADE)
+class Subject(models.Model):
+    Created_by = models.ForeignKey(User,on_delete = models.CASCADE)
     slug = models.SlugField()
-    titulli = models.CharField(max_length=30)
-    klasa = models.ForeignKey(Klasa,on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    clase= models.ForeignKey(Clasa,on_delete=models.CASCADE)
     pershkrimi = models.TextField(max_length=400)
     krijuar_me = models.DateTimeField(auto_now=True)
     imazhi_lendes = models.ImageField(upload_to='kurs_images', default='default.jpg')
